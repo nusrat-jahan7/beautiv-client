@@ -64,7 +64,7 @@ const Footer = () => {
         </nav>
       </footer>
          <div className="text-white lg:flex justify-between items-center container mx-auto pt-10 pl-9">
-         <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+         <p>Copyright © 2023 - All right reserved by BEAUTIV Ltd</p>
          <img className="lg:pr-36" src={img} alt="" />
          </div>
     </div>

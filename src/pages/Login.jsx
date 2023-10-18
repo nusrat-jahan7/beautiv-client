@@ -50,7 +50,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-pink-400 via-purple-300 to-pink-400 py-20">
+    <div className="bg-gradient-to-r from-pink-400 to-purple-400 py-20">
       <div className="w-full max-w-sm p-6 m-auto mx-auto bg-white font-poppins rounded-lg shadow-lg">
         <div className="flex justify-center mx-auto">
         <h1 className="text-4xl text-pink-600 font-bold text-center mt-4">

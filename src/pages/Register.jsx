@@ -79,7 +79,7 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-pink-400 via-purple-300 to-pink-400 py-20 ">
+    <div className="bg-gradient-to-r from-pink-400 to-purple-400 py-20 ">
       <div className="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md">
         <div className="px-6 py-4">
           <div >
