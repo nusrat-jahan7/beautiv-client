@@ -12,7 +12,7 @@ const Banner = () => {
         <div className="max-w-2xl pt-10 md:pt-5 lg:pt-52 lg:pl-32 ">
           <div className="space-y-2">
             <h1 className="text-3xl text-pink-600 ">EXCLUSIVE</h1>
-            <h1 className="md::pb-3 text-4xl md:text-7xl font-bold md:border-b-2 border-pink-700  text-pink-600">
+            <h1 className="md:pb-3 text-4xl md:text-7xl font-bold md:border-b-2 border-pink-700  text-pink-600">
               COSMETICS
             </h1>
             <h1 className="pt-2 lg:tracking-widest text-xl lg:text-3xl text-pink-600 ">
