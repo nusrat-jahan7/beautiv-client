@@ -1,5 +1,6 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { BsStarHalf } from "react-icons/bs";
+import Advertisement from "../components/Advertisement";
 
 const Product = () => {
   const items = useLoaderData();
@@ -9,6 +10,7 @@ const Product = () => {
 
   return (
     <div className="bg-pink-100">
+        <Advertisement/>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 container mx-auto gap-5 py-16 p-4">
         {products.map((product) => (
           <div key={product?._id} className="card bg-base-100 shadow-xl">
@@ -48,9 +50,9 @@ const Product = () => {
                 <div className="btn btn-sm bg-purple-700 text-white hover:bg-pink-700 badge-outline">
                   Update
                 </div>
-                <div className="btn btn-sm bg-purple-700 text-white hover:bg-pink-700 badge-outline">
+                <Link to={`/product-details/${product?._id}`} className="btn btn-sm bg-purple-700 text-white hover:bg-pink-700 badge-outline">
                   Details
-                </div>
+                </Link>
               </div>
             </div>
           </div>

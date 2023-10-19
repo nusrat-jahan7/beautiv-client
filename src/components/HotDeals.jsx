@@ -4,9 +4,9 @@ import deals3 from "../../public/deals-3.jpg";
 import deals4 from "../../public/deals-4.jpg";
 const HotDeals = () => {
   return (
-    <div>
+    <div className="pt-16">
         <div>
-            <h1 className="text-center text-4xl font-semibold text-pink-700 py-12">Hot Deals</h1>
+            <h1 className="text-center text-4xl font-semibold text-pink-700 py-10">Hot Deals</h1>
         </div>
       <div className="grid max-w-screen-xl gap-8 row-gap-5 mb-8 sm:grid-cols-2 lg:grid-cols-4 sm:mx-auto cursor-pointer">
         <img

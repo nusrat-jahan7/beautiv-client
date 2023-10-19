@@ -17,7 +17,7 @@ const Brands = () => {
   }, []);
 
   return (
-    <div>
+    <div className="pt-10">
       <h1 className="text-center text-4xl font-semibold text-pink-700 py-12">
         Brands
       </h1>
