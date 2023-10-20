@@ -8,6 +8,7 @@ import Register from "../pages/Register";
 import ErrorPage from "../pages/ErrorPage";
 import Product from "../pages/Product";
 import ProductDetails from "../pages/ProductDetails";
+import UpdateProduct from "../pages/UpdateProduct";
 
 export const router = createBrowserRouter([
   {
@@ -41,9 +42,14 @@ export const router = createBrowserRouter([
             element: <Product/>,
         },
         {
-            path: "/product-details/:_id",
-            loader: ({params}) => fetch(`https://beautiv-server.vercel.app/products/${params._id}`),
+            path: "/products/:slug/:id",
+            loader: ({params}) => fetch(`https://beautiv-server.vercel.app/products/${params.slug}/${params.id}`),
             element: <ProductDetails/>
+        },
+        {
+            path: "/products/:slug/:id",
+            loader: ({params}) => fetch(`https://beautiv-server.vercel.app/products/${params.slug}/${params.id}`),
+            element: <UpdateProduct/>
         }
     ]
   },
