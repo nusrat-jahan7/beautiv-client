@@ -2,11 +2,21 @@ import { Link, useLoaderData } from "react-router-dom";
 import { BsStarFill } from "react-icons/bs";
 import Advertisement from "../components/Advertisement";
 
+function formatCompanyName(brandName) {
+  const words = brandName.split("_");
+
+  const formattedName = words
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+  return formattedName;
+}
+// nars_cosmetics
+// "Nars Cosmetics"
+
 const Product = () => {
   const items = useLoaderData();
   const products = items?.data;
-
-  //   const singleProduct = products.map(product => console.log(product))
 
   return (
     <div className="bg-pink-100">
@@ -19,7 +29,7 @@ const Product = () => {
           >
             <figure>
               <img
-                className="w-full h-72"
+                className="w-full h-72 object-cover"
                 src={product?.image}
                 alt="Cosmetics"
               />
@@ -27,7 +37,9 @@ const Product = () => {
             <div className="card-body">
               <h2 className="card-title line-clamp-1">{product?.name}</h2>
               <div className="flex justify-between items-center">
-                <p className=" text-gray-400">{product?.brand_name}</p>
+                <p className=" text-gray-400">
+                  {formatCompanyName(product?.brand_slug)}
+                </p>
                 <div className="flex items-center gap-2">
                   <p className="font-semibold text-pink-400 text-right">
                     {product?.rating}
@@ -45,17 +57,20 @@ const Product = () => {
                   ${product?.price}
                 </p>
               </div>
-              <Link to={`/products/${product?.brand_slug}/${product?._id}`} className="card-actions pt-4 justify-center">
-                <div className="btn btn-sm hover:bg-pink-700 hover:text-white badge-outline text-pink-700 border-pink-700">
+              <div className="card-actions pt-4 justify-center">
+                <Link
+                  to={`/edit-products/${product?.brand_slug}/${product?._id}`}
+                  className="btn btn-sm hover:bg-pink-700 hover:text-white badge-outline text-pink-700 border-pink-700"
+                >
                   Update
-                </div>
+                </Link>
                 <Link
                   to={`/products/${product?.brand_slug}/${product?._id}`}
                   className="btn btn-sm border border-purple-700 bg-purple-700 text-white hover:bg-pink-700 badge-outline"
                 >
                   Details
                 </Link>
-              </Link>
+              </div>
             </div>
           </div>
         ))}

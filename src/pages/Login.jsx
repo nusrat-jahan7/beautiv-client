@@ -24,7 +24,7 @@ const Login = () => {
         toast.success("Login successfully!");
         setTimeout(() => {
           navigate(from, { replace: true });
-        }, 1500);     
+        }, 1500);
       })
       .catch((error) => {
         const errorMessage = formatFirebaseAuthErrorMessage(error);
@@ -41,7 +41,7 @@ const Login = () => {
         toast.success("Login successfully!");
         setTimeout(() => {
           navigate(from, { replace: true });
-        }, 1500); 
+        }, 1500);
       })
       .catch((error) => {
         const errorMessage = formatFirebaseAuthErrorMessage(error);
@@ -52,17 +52,15 @@ const Login = () => {
   return (
     <div className="bg-gradient-to-r from-pink-400 to-purple-400 py-20">
       <div className="w-full max-w-sm p-6 m-auto mx-auto bg-white font-poppins rounded-lg shadow-lg">
-        <div className="flex justify-center mx-auto">
-        <h1 className="text-4xl text-pink-600 font-bold text-center mt-4">
-           Welcome Back!
+        <div>
+          <h1 className="text-lg text-center text-pink-600">
+            {"Welcome Back"}
           </h1>
         </div>
 
-        <div>
-          <h1 className="text-3xl text-pink-600 font-bold text-center mt-4">
-            LOGIN
-          </h1>
-        </div>
+        <h3 className="mt-3 text-4xl font-bold text-pink-600 text-center">
+          Login
+        </h3>
 
         <form onSubmit={handleEmailLogin} className="mt-6">
           <div>
@@ -70,6 +68,7 @@ const Login = () => {
               Email
             </label>
             <input
+              required
               type="text"
               name="email"
               id="email"
@@ -86,6 +85,7 @@ const Login = () => {
             </div>
 
             <input
+              required
               type="password"
               name="password"
               id="password"
@@ -96,14 +96,11 @@ const Login = () => {
 
           <div className="mt-6">
             <button
-            disabled={loading}
+              disabled={loading}
               type="submit"
               className="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-pink-700 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50 disabled:bg-purple-700/50"
             >
-              {
-                loading ? "Loading" : "Login"
-              }
-              
+              {loading ? "Loading" : "Login"}
             </button>
           </div>
         </form>

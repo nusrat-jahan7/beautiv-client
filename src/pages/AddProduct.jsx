@@ -1,3 +1,5 @@
+import toast from "react-hot-toast";
+
 const AddProduct = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -5,7 +7,7 @@ const AddProduct = () => {
 
     const name = form.name.value;
     const image = form.image.value;
-    const brandName = form.brandName.value;
+    const brand_slug = form.brand.value;
     const type = form.type.value;
     const price = form.price.value;
     const rating = form.rating.value;
@@ -13,7 +15,7 @@ const AddProduct = () => {
     const data = {
       name,
       image,
-      brandName,
+      brand_slug,
       type,
       price,
       rating,
@@ -28,13 +30,15 @@ const AddProduct = () => {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
-    form.reset();
+      .then((data) => {
+        toast.success(data?.message);
+        form.reset();
+      });
   };
 
   return (
     <div>
-      <section className="p-6 bg-pink-100">
+      <section className="p-6">
         <h1 className="text-center text-4xl border-b-2 border-pink-700 w-96 mx-auto font-semibold text-pink-700 py-3">
           Add Makeup Products
         </h1>
@@ -47,17 +51,18 @@ const AddProduct = () => {
             <div className="grid grid-cols-6 gap-4 w-full mx-auto col-span-full ">
               <div className="col-span-full sm:col-span-3">
                 <label
-                  htmlFor="firstname"
+                  htmlFor="name"
                   className="lg:text-lg lg:font-semibold text-pink-700"
                 >
                   Name
                 </label>
                 <input
+                  required
                   id=""
                   name="name"
                   type="text"
                   placeholder="Ex- Serum Foundation"
-                  className="w-full my-3 rounded-md p-3 focus:ring"
+                  className="w-full my-3 rounded-md p-3"
                 />
               </div>
               <div className="col-span-full sm:col-span-3">
@@ -68,40 +73,52 @@ const AddProduct = () => {
                   Image
                 </label>
                 <input
+                  required
                   id=""
                   name="image"
                   type="text"
                   placeholder="https://"
-                  className="w-full p-3 my-3 rounded-md focus:ring"
+                  className="w-full p-3 my-3 rounded-md"
                 />
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label
-                  htmlFor="city"
+                  htmlFor="brand"
                   className="lg:text-lg lg:font-semibold text-pink-700"
                 >
-                  Brand Name
+                  Select Brand
                 </label>
-                <input
-                  id=""
-                  name="brandName"
-                  type="text"
-                  placeholder="ex- Mac Cosmetics"
-                  className="w-full p-3 my-3 rounded-md focus:ring"
-                />
+                <select
+                  required
+                  name="brand"
+                  className="select my-3 w-full rounded-md"
+                >
+                  <option value={""} disabled selected>
+                    Select a brand
+                  </option>
+                  <option value={"luxe_beauty"}>Luxe Beauty</option>
+                  <option value={"loreal"}>{"L'Oreal"}</option>
+                  <option value={"estee_lauder"}>Estée Lauder</option>
+                  <option value={"mac_cosmetics"}>MAC Cosmetics</option>
+                  <option value={"maybelline"}>Maybelline</option>
+                  <option value={"nars_cosmetics"}>NARS Cosmetics</option>
+                  <option value={"revlon"}>Revlon</option>
+                  <option value={"clinique"}>Clinique</option>
+                </select>
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label
-                  htmlFor="state"
+                  htmlFor="type"
                   className="lg:text-lg lg:font-semibold text-pink-700"
                 >
                   Type of Makeup
                 </label>
                 <select
+                  required
                   name="type"
-                  className="select my-3 w-full rounded-md focus:ring"
+                  className="select my-3 w-full rounded-md"
                 >
-                  <option disabled selected>
+                  <option value={""} disabled selected>
                     Pick your makeup type
                   </option>
                   <option>Foundation</option>
@@ -118,11 +135,12 @@ const AddProduct = () => {
                   Price
                 </label>
                 <input
+                  required
                   id=""
                   name="price"
                   type="text"
                   placeholder="$"
-                  className="w-full p-3 my-3 rounded-md focus:ring"
+                  className="w-full p-3 my-3 rounded-md"
                 />
               </div>
               <div className="col-span-full sm:col-span-3">
@@ -130,11 +148,12 @@ const AddProduct = () => {
                   Rating
                 </label>
                 <input
+                  required
                   id=""
                   name="rating"
                   type="text"
                   placeholder="5"
-                  className="w-full p-3 my-3 rounded-md focus:ring"
+                  className="w-full p-3 my-3 rounded-md"
                 />
               </div>
 
@@ -147,7 +166,7 @@ const AddProduct = () => {
                   name="description"
                   type="text"
                   placeholder=""
-                  className="w-full p-3 my-3 py-6 rounded-md focus:ring-pink-700"
+                  className="w-full p-3 my-3 py-6 rounded-md-pink-700"
                 />
               </div>
             </div>

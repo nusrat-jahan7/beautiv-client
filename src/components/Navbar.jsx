@@ -18,8 +18,6 @@ const Navbar = () => {
       >
         Home
       </NavLink>
-      <NavLink> Brands </NavLink>
-      <NavLink> Products </NavLink>
       <NavLink
         style={({ isActive }) => ({
           color: isActive ? "pink" : "white",
@@ -29,7 +27,6 @@ const Navbar = () => {
       >
         Add Products
       </NavLink>
-      <NavLink> Hot Deals </NavLink>
       <NavLink
         style={({ isActive }) => ({
           color: isActive ? "pink" : "white",
@@ -39,8 +36,6 @@ const Navbar = () => {
       >
         My Cart
       </NavLink>
-      <NavLink> About Us </NavLink>
-      <NavLink> FAQ </NavLink>
     </>
   );
 
@@ -75,29 +70,27 @@ const Navbar = () => {
           <Link to={"/"} className="">
             <img className="w-32" src={logo} alt="" />
           </Link>
-         
         </div>
         <div className="navbar-center hidden lg:flex">
-        <div className="relative flex items-center">
+          <div className="relative flex items-center">
             <input
               type="text"
               placeholder="Search Products....."
-              className="input rounded-3xl input-bordered input-secondary w-[820px] pl-10 pr-4"
+              className="input rounded-3xl bg-transparent input-bordered input-secondary w-[820px] pl-10 pr-4"
             />
             <FiSearch className="absolute left-3 text-gray-400" />
           </div>
-          
         </div>
         <div className="navbar-end">
           {user?.email ? (
             <div className="flex items-center gap-2">
-              <p className="justify-between font-semibold">
-                {user?.displayName?.split(" ")[0] ?? "User"}
+              <p className="justify-between text-pink-700 font-semibold">
+                {user?.displayName?.split(" ")[0]}
               </p>
               <div className="w-10 rounded-full">
                 <img
-                  className="rounded-full"
-                  src={user?.photoURL ?? "user.jpg"}
+                  className="rounded-full object-cover w-10 h-10"
+                  src={user?.photoURL ?? "https://i.ibb.co/t4NG2L4/user.png"}
                 />
               </div>
               <button
@@ -137,9 +130,9 @@ const Navbar = () => {
         </div>
       </div>
       <div className="hidden lg:flex justify-center py-3 bg-purple-700">
-      <ul className="menu menu-horizontal gap-10 px-1 font-medium text-lg text-white">
-            {links}
-          </ul>
+        <ul className="menu menu-horizontal gap-10 px-1 font-medium text-lg text-white">
+          {links}
+        </ul>
       </div>
     </nav>
   );

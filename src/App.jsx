@@ -1,17 +1,18 @@
-import { Outlet } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import './index.css'
-import Footer from './components/Footer'
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import "./index.css";
+import Footer from "./components/Footer";
 
 function App() {
-
   return (
-    <>
-      <Navbar/>
-      <Outlet/>
-      <Footer/>
-    </>
-  )
+    <div className="bg-pink-50">
+      <Navbar />
+      <div>
+        <Outlet />
+      </div>
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;

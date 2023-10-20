@@ -6,11 +6,13 @@ import { formatFirebaseAuthErrorMessage } from "../helpers";
 
 const Register = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-  const { signUp, loading } = useContext(AuthContext);
+  const Location = useLocation();
+  const from = Location.state?.from?.pathname || "/";
+  const { signUp, editProfile, loading, setLoading } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
+    name: "",
+    image: "",
     email: "",
     password: "",
   });
@@ -40,9 +42,11 @@ const Register = () => {
     }
   };
 
-  const handleRegister = (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
-    const { email, password } = formData;
+    const { email, password, name, image } = formData;
+
+    console.log(formData);
 
     if (
       passwordErrors.length ||
@@ -53,37 +57,52 @@ const Register = () => {
       return;
     }
 
+    // Sign up the user with Firebase authentication
     signUp(email, password)
+      .then(() => {
+        // Edit the user profile after successful signup
+        return editProfile({ displayName: name, photoURL: image });
+      })
       .then((result) => {
-        console.log(result.user);
+        console.log(result);
         toast.success("Account created successfully!");
-        setTimeout(() => {
-          navigate(from, { replace: true });
-        }, 1500);
+
+        // Navigate to a different page after successful registration
+        navigate(from, { replace: true });
+
+        window.location.reload();
+
+        // Reset the form and password errors
+        setFormData({
+          name: "",
+          image: "",
+          email: "",
+          password: "",
+        });
+        setPasswordErrors({
+          length: false,
+          capital: false,
+          specialCharacter: false,
+        });
+
+        setLoading(false);
       })
       .catch((error) => {
+        setLoading(false);
+        console.log(error);
         const errorMessage = formatFirebaseAuthErrorMessage(error);
         toast.error(errorMessage);
       });
-
-    // Reset the form
-    setFormData({
-      email: "",
-      password: "",
-    });
-    setPasswordErrors({
-      length: false,
-      capital: false,
-      specialCharacter: false,
-    });
   };
 
   return (
     <div className="bg-gradient-to-r from-pink-400 to-purple-400 py-20 ">
       <div className="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md">
         <div className="px-6 py-4">
-          <div >
-            <h1 className="text-lg text-center text-pink-600">Do'nt Have An Account?</h1>
+          <div>
+            <h1 className="text-lg text-center text-pink-600">
+              {"Do'nt Have An Account?"}
+            </h1>
           </div>
 
           <h3 className="mt-3 text-4xl font-bold text-pink-600 text-center">
@@ -92,8 +111,34 @@ const Register = () => {
 
           <form onSubmit={handleRegister}>
             <div className="w-full mt-4">
+              <h3 className="text-gray-600">Name</h3>
+              <input
+                required
+                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Jhon Doe"
+                value={formData.name}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="w-full mt-4">
+              <h3 className="text-gray-600">Image</h3>
+              <input
+                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                type="text"
+                name="image"
+                id="image"
+                placeholder="https//yourimagelink.com/"
+                value={formData.image}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="w-full mt-4">
               <h3 className="text-gray-600">Email</h3>
               <input
+                required
                 className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                 type="text"
                 name="email"
@@ -107,6 +152,7 @@ const Register = () => {
             <div className="w-full mt-4">
               <h3 className="text-gray-600">Password</h3>
               <input
+                required
                 className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300 ${
                   passwordErrors.length ||
                   passwordErrors.capital ||
@@ -141,16 +187,13 @@ const Register = () => {
             </div>
 
             <div className="flex items-center justify-end mt-4">
-            <button
-            disabled={loading}
-              type="submit"
-              className="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-pink-700 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50 disabled:bg-purple-700/50"
-            >
-              {
-                loading ? "Loading" : "Register"
-              }
-              
-            </button>
+              <button
+                disabled={loading}
+                type="submit"
+                className="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-pink-700 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50 disabled:bg-purple-700/50"
+              >
+                {loading ? "Loading" : "Register"}
+              </button>
             </div>
           </form>
           <p className="mt-4 text-sm font-light text-center text-gray-500">

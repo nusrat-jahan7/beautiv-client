@@ -1,6 +1,5 @@
 import Banner from "../components/Banner";
 import Brands from "../components/Brands";
-import Cart from "../components/Cart";
 import Faq from "../components/Faq";
 import HotDeals from "../components/HotDeals";
 
@@ -11,7 +10,6 @@ const Home = () => {
       <Brands/>
       <HotDeals/>
       <Faq/>
-      <Cart/>
     </div>
   );
 };
