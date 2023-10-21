@@ -6,7 +6,7 @@ const Faq = () => {
           <h2 className="text-2xl text-pink-700 font-semibold pb-6 md:pb-0 sm:text-4xl">
             Frequently Asked Questions
           </h2>
-          <p className="hidden lg:block mt-8 mb-8 max-w-4/6 mx-auto text-gray-500 text-center">
+          <p className="hidden lg:block mt-10 mb-10 max-w-4/6 mx-auto text-gray-500 text-center">
             Find instant answers to common queries with our comprehensive FAQ
             section, simplifying your event planning journey
           </p>
