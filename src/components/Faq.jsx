@@ -1,12 +1,12 @@
 const Faq = () => {
   return (
-    <section className="py-16">
+    <section className="md:py-16 py-6">
       <div className="container mx-auto">
         <div className="text-center">
-          <h2 className="text-2xl text-pink-700 font-semibold sm:text-4xl">
+          <h2 className="text-2xl text-pink-700 font-semibold pb-6 md:pb-0 sm:text-4xl">
             Frequently Asked Questions
           </h2>
-          <p className="mt-8 mb-8 max-w-4/6 mx-auto text-gray-500 text-center">
+          <p className="hidden lg:block mt-8 mb-8 max-w-4/6 mx-auto text-gray-500 text-center">
             Find instant answers to common queries with our comprehensive FAQ
             section, simplifying your event planning journey
           </p>

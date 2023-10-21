@@ -42,8 +42,8 @@ const UpdateProduct = () => {
   return (
     <div>
       <section className="p-6">
-        <h1 className="text-center text-4xl border-b-2 border-pink-700 w-96 mx-auto font-semibold text-pink-700 py-3">
-        Update Product
+        <h1 className="text-center text-xl lg:text-4xl lg:border-b-2 lg:border-pink-700 lg:w-96 mx-auto font-semibold text-pink-700 py-3">
+          Update Product
         </h1>
         <form
           onSubmit={handleSubmit}
@@ -182,9 +182,9 @@ const UpdateProduct = () => {
             </div>
             <button
               type="submit"
-              className="col-span-full w-80 mx-auto btn bg-purple-700 text-white hover:bg-pink-700"
+              className="col-span-full lg:w-80 mx-auto btn bg-purple-700 text-white hover:bg-pink-700"
             >
-              Update Product
+              Update
             </button>
           </div>
         </form>

@@ -1,12 +1,35 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Rating from "react-rating";
 import { useLoaderData } from "react-router-dom";
 import { AiOutlineStar } from "react-icons/ai";
 import { AiTwotoneStar } from "react-icons/ai";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthProvider";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const { data } = useLoaderData();
+  const { name, image, type, price, rating, description } = data;
 
-  const { name, image, type, price, rating } = data;
+  const { user } = useContext(AuthContext);
+
+  const handleAddToCart = (productData) => {
+    const bodyData = {
+      email: user.email,
+      product: productData,
+    };
+    fetch("https://beautiv-server.vercel.app/cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bodyData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success(data.message);
+      });
+  };
 
   return (
     <div>
@@ -32,17 +55,12 @@ const ProductDetails = () => {
             />
             <h2 className="text-2xl font-semibold text-pink-700">$ {price}</h2>
             <p className="text-lg text-gray-600 pt-3">
-              Cosmetics are constituted mixtures of chemical compounds derived
-              from either natural sources, or synthetically created
-              ones.Cosmetics have various purposes. Those designed for personal
-              care and skin care can be used to cleanse or protect the body or
-              skin. Cosmetics designed to enhance or alter ones appearance
-              (makeup) can be used to conceal blemishes, enhance ones natural
-              features (such as the eyebrows and eyelashes), add color to a
-              persons face, or change the appearance of the face entirely to
-              resemble a different person, creature or object.
+              {description}
             </p>
-            <button className="btn bg-purple-700 text-white mt-3 hover:bg-pink-700">
+            <button
+              onClick={() => handleAddToCart(data)}
+              className="btn bg-purple-700 text-white mt-3 hover:bg-pink-700"
+            >
               Add to Cart
             </button>
           </div>

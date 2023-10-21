@@ -2,17 +2,14 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { Navigate, useLocation } from "react-router-dom";
+import Loader from "../components/Loader";
 
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
   const { user, loading } = useContext(AuthContext);
 
   if (loading) {
-    return (
-      <div className="min-h-[400px] flex justify-center items-center">
-        <span className="loading loading-dots loading-lg text-cyan-700"></span>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (!user) {

@@ -39,7 +39,7 @@ const AddProduct = () => {
   return (
     <div>
       <section className="p-6">
-        <h1 className="text-center text-4xl border-b-2 border-pink-700 w-96 mx-auto font-semibold text-pink-700 py-3">
+        <h1 className="text-center text-xl lg:text-4xl lg:border-b-2 lg:border-pink-700 lg:w-96 mx-auto font-semibold text-pink-700 py-3">
           Add Makeup Products
         </h1>
         <form
@@ -172,7 +172,7 @@ const AddProduct = () => {
             </div>
             <button
               type="submit"
-              className="col-span-full w-80 mx-auto btn bg-purple-700 text-white hover:bg-pink-700"
+              className="col-span-full lg:w-80 mx-auto btn bg-purple-700 text-white hover:bg-pink-700"
             >
               Add Product
             </button>
